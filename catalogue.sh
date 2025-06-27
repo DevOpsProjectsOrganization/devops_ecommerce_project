@@ -1,6 +1,6 @@
 cp -f mongo.repo /etc/yum.repos.d/mongo.repo
 
-source common
+source common.sh
 component=catalogue
 NODEJS
 
