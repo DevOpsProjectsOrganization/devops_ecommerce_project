@@ -27,15 +27,19 @@ SYSTEMD
 }
 
 MAVEN(){
+
 dnf install maven -y
 
 APP_PREREQ
 mvn clean package 
 mv target/${component}-1.0.jar ${component}.jar  
 dnf install mysql -y 
-mysql -h mysql-dev.sdevops.shop -uroot -pRoboShop@1 < /app/db/schema.sql
-mysql -h mysql-dev.sdevops.shop -uroot -pRoboShop@1 < /app/db/app-user.sql 
-mysql -h mysql-dev.sdevops.shop -uroot -pRoboShop@1 < /app/db/master-data.sql
+# here the password is the first argument that is sent while running the shipping.sh and 
+#hence it is not hardcoded in the code.
+# sudo bash shipping.sh RoboShop@1
+for word in schema app-user master-data; do
+mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/${word}.sql
+done
 
 SYSTEMD
 }
