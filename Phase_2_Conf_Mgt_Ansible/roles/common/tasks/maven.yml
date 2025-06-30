@@ -18,8 +18,11 @@
     state: installed
 
 - name: connect schema from the hosts
-  ansible.builtin.shell:
-    cmd: mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/schema.sql; mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/app-user.sql; mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/master-data.sql;
+  ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/schema.sql
+- name: connect schema from the hosts
+  ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/app-user.sql
+- name: connect schema from the hosts
+  ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/master-data.sql
 
 - name: import systemd from common role
   ansible.builtin.import_role:
