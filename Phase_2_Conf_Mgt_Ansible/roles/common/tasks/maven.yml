@@ -9,8 +9,8 @@
     tasks_from: app_prereq.yml
 
 - name: install dependencies
-  ansible.builtin.shell: mvn clean package;
-    mv "target/{{component}}-1.0.jar {{component}}.jar"
+  ansible.builtin.shell:
+    cmd: mvn clean package; mv "target/{{component}}-1.0.jar {{component}}.jar"
 
 - name: install mysql
   ansible.builtin.dnf:
@@ -19,9 +19,7 @@
 
 - name: connect schema from the hosts
   ansible.builtin.shell:
-    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/schema.sql;
-    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/app-user.sql;
-    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/master-data.sql;
+    cmd: mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/schema.sql; mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/app-user.sql; mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/master-data.sql;
 
 - name: import systemd from common role
   ansible.builtin.import_role:
