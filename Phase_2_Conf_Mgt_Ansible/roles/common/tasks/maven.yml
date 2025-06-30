@@ -10,7 +10,7 @@
 
 - name: install dependencies
   ansible.builtin.shell: mvn clean package;
-    mv target/${component}-1.0.jar ${component}.jar
+    mv "target/{{component}}-1.0.jar {{component}}.jar"
 
 - name: install mysql
   ansible.builtin.dnf:
