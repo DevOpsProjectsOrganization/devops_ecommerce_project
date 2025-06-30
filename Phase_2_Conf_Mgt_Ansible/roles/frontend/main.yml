@@ -1,0 +1,15 @@
+- name: frontend playbook
+- hosts: all
+- become: true
+- tasks:
+    - name: Install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
+    - name: copy the nginx conf file
+      ansible.builtin.copy:
+        src: frontend.service
+        dest: /etc/nginx/nginx.conf
+    - name: delete old nginx html file
+      ansible.builtin.shell:
+        cmd: rm -rf /usr/share/nginx/html/*; curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip;
