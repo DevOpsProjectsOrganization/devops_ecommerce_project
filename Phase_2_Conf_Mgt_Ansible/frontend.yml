@@ -1,0 +1,26 @@
+#dnf module disable nginx -y
+#dnf module enable nginx:1.24 -y
+#dnf install nginx -y
+#cp -f frontend.service /etc/nginx/nginx.conf
+#rm -rf /usr/share/nginx/html/*
+#curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+#cd /usr/share/nginx/html
+#unzip /tmp/frontend.zip
+#ystemctl enable nginx
+#systemctl restart nginx
+
+- name: frontend playbook
+- hosts: all
+- become: true
+- tasks:
+    - name: Install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
+    - name: copy the nginx conf file
+      ansible.builtin.copy:
+        src: frontend.service
+        dest: /etc/nginx/nginx.conf
+    - name: delete old nginx html file
+      ansible.builtin.shell:
+        cmd: rm -rf /usr/share/nginx/html/*; curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip;
