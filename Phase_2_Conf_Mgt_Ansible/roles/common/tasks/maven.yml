@@ -1,0 +1,35 @@
+#for word in schema app-user master-data; do
+#mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/${word}.sql
+#done
+
+#SYSTEMD
+
+- name: install maven
+  ansible:builtin:dnf:
+    name: maven
+    state: installed
+
+- name: import app_prereq from common
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_prereq.yml
+
+- name: install dependencies
+  ansible.builtin.shell: mvn clean package;
+    mv target/${component}-1.0.jar ${component}.jar
+
+- name: install mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: connect schema from the hosts
+  ansible.builtin.shell:
+    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/schema.sql;
+    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/app-user.sql;
+    mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/master-data.sql;
+
+- name: import systemd from common role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd.yml
