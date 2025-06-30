@@ -1,11 +1,5 @@
-#for word in schema app-user master-data; do
-#mysql -h mysql-dev.sdevops.shop -uroot -p$1 < /app/db/${word}.sql
-#done
-
-#SYSTEMD
-
 - name: install maven
-  ansible:builtin:dnf:
+  ansible.builtin.dnf:
     name: maven
     state: installed
 
