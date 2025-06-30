@@ -9,8 +9,7 @@
     tasks_from: app_prereq.yml
 
 - name: install dependencies
-  ansible.builtin.shell:
-    cmd: mvn clean package; mv "target/{{component}}-1.0.jar {{component}}.jar"
+  ansible.builtin.shell: mvn clean package; mv target/{{component}}-1.0.jar {{component}}.jar
   args:
     chdir: /app
 
