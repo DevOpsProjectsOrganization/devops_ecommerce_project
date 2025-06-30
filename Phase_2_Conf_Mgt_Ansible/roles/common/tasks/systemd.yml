@@ -3,3 +3,4 @@
     name: "{{component}}"
     enabled: true
     state: restarted
+    daemon_reload: true
