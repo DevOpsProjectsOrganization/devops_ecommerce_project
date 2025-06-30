@@ -5,7 +5,7 @@
 - name: copy config file
   ansible.builtin.copy:
     src: "{{component}}.service"
-    dest: /etc/systemd/system/${component}.service
+    dest: "/etc/systemd/system/{{component}}.service"
 
 - name: remove app directory
   ansible.builtin.file:
