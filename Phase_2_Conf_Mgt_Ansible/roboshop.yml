@@ -1,6 +1,5 @@
 - name: frontend playbook
 - hosts: all
 - become: true
-- tasks:
-    roles:
-      - "{{ role }}"
+- roles:
+    - "{{ role }}"
