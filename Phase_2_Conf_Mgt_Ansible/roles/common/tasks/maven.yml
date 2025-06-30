@@ -11,6 +11,8 @@
 - name: install dependencies
   ansible.builtin.shell:
     cmd: mvn clean package; mv "target/{{component}}-1.0.jar {{component}}.jar"
+  args:
+    chdir: /app
 
 - name: install mysql
   ansible.builtin.dnf:
