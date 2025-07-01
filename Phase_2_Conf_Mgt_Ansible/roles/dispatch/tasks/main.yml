@@ -15,8 +15,6 @@
 
 - name: init and build golang
   ansible.builtin.shell: go mod init dispatch; go get; go build;
-  args:
-    chdir: /app
 
 - name: import systemd
   ansible.builtin.import_role:
