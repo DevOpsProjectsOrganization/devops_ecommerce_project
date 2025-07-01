@@ -10,11 +10,13 @@
 
 - name: Ensure no old go.mod exists
   ansible.builtin.file:
-    path: /app
+    path: /dispatch/go.mod
     state: absent
 
 - name: init and build golang
   ansible.builtin.shell: go mod init dispatch; go get; go build;
+  args:
+    chdir: /app
 
 - name: import systemd
   ansible.builtin.import_role:
