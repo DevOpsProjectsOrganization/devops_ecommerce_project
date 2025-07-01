@@ -20,9 +20,11 @@
 
 - name: connect schema from the hosts
   ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p{{password}} < /app/db/schema.sql
-- name: connect schema from the hosts
+
+- name: connect app-user from the hosts
   ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p{{password}} < /app/db/app-user.sql
-- name: connect schema from the hosts
+
+- name: connect master-data from the hosts
   ansible.builtin.shell: mysql -h mysql-dev.sdevops.shop -uroot -p{{password}} < /app/db/master-data.sql
 
 - name: import systemd from common role
