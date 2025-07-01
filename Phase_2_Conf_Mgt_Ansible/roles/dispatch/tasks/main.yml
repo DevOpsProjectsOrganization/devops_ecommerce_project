@@ -8,8 +8,15 @@
     name: common
     tasks_from: app_prereq.yml
 
+- name: Ensure no old go.mod exists
+  ansible.builtin.file:
+    path: /dispatch/go.mod
+    state: absent
+
 - name: init and build golang
   ansible.builtin.shell: go mod init dispatch;
+  args:
+    chdir: /dispatch/
 
 - name: init and build golang
   ansible.builtin.shell: go get;
