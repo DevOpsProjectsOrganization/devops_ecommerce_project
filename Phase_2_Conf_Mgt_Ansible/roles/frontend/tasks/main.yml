@@ -19,6 +19,11 @@
     path: /usr/share/nginx/html/
     state: absent
 
+- name: create dest file for config
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
 - name: Unarchive a file
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
