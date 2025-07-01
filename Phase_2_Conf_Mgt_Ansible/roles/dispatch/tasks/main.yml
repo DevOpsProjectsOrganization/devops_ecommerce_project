@@ -15,8 +15,6 @@
 
 - name: init and build golang
   ansible.builtin.shell: go mod init dispatch;
-  args:
-    chdir: /dispatch/
 
 - name: init and build golang
   ansible.builtin.shell: go get;
