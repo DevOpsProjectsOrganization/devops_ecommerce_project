@@ -3,7 +3,7 @@ resource "aws_instance" "my_instance" {
     instance_type   =  var.instance_type
 }
 
-resource "aws_dns_record" "my_public_record"{
+resource "aws_route53_record" "my_public_record"{
     zone_id = var.zone_id
     name    = "${var.name}-${var.env}"
     type    = "A"
