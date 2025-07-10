@@ -1,6 +1,9 @@
 resource "aws_instance" "my_instance" {
     ami             = var.ami
     instance_type   =  var.instance_type
+    tags            = {
+        Name        = "${var.name}-${var.env}"
+    }
 }
 
 resource "aws_route53_record" "my_public_record"{
