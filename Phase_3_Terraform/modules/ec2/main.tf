@@ -5,7 +5,7 @@ resource "aws_instance" "my_instance" {
 
 resource "aws_dns_record" "my_public_record"{
     zone_id = var.zone_id
-    name    = ${var.name}-${var.env}
+    name    = "${var.name}-${var.env}"
     type    = "A"
     ttl     = 300
     records = [aws_instance.my_instance.public_ip]
