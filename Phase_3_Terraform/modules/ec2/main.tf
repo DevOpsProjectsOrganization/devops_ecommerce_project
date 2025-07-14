@@ -26,7 +26,7 @@ resource "null_resource" "ansible"{
         }
         inline = [
             "sudo pip3.11 install ansible hvac",
-            "ansible-pull -i localhost, -U https://github.com/DevOpsProjectsOrganization/devops_ecommerce_project/tree/2956b2d8b3077929c3aab397bb493ecec4929625/Phase_2_Conf_Mgt_Ansible roboshop.yml -e role=$(var.name)"
+            "ansible-pull -i localhost, -U https://github.com/DevOpsProjectsOrganization/devops_ecommerce_project/tree/main/Phase_2_Conf_Mgt_Ansible roboshop.yml -e role=$(var.name)"
         ]
        
     }
