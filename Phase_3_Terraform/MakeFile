@@ -1,25 +1,25 @@
 dev-init:
 	rm -rf ./environments/dev/terraform.terraform
 	terraform init
-dev plan:
+dev-plan:
 	terraform init
 	terraform plan -auto-approve -var-file="./environments/dev/main.tfvars"
-dev apply:
+dev-apply:
 	terraform init
 	terraform apply -auto-approve -var-file="./environments/dev/main.tfvars"
-dev destroy:
+dev-destroy:
 	terraform init
 	terraform destroy -auto-approve -var-file="./environments/dev/main.tfvars"
 
 prod-init:
 	rm -rf ./environments/prod/terraform.terraform
 	terraform init
-prod plan:
+prod-plan:
 	terraform init
 	terraform plan -auto-approve -var-file="./environments/prod/main.tfvars"
-prod apply:
+prod-apply:
 	terraform init
 	terraform apply -auto-approve -var-file="./environments/prod/main.tfvars"
-prod destroy:
+prod-destroy:
 	terraform init
 	terraform destroy -auto-approve -var-file="./environments/prod/main.tfvars"
