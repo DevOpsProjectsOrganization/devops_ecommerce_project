@@ -36,5 +36,5 @@ instances = {
 
 ami     = "ami-09c813fb71547fc4f"
 env     = "prod"
-zone_id = "Z074009624DM9F23P46HD"
+zone_id = "Z08786032W2NWXT9UW4JD"
 zone_name= "sdevops.shop"
