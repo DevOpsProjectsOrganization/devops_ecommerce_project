@@ -1,7 +1,0 @@
-#source common.sh
-#component=user
-#NODEJS
-- name: import nodejs from common user
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: nodejs.yml
